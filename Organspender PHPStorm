@@ -56,5 +56,73 @@ class Termin {
         $this->pat1 = $pat1;
         $this->pat2 = $pat2;
     }
+    
+     public $id = 'null';
+    public $datum = 'null';
+    public $zeit = 'null';
+    public $pat1 = 'null';
+    public $pat2 = 'null';
+    public function getID() {
+        return $this->id;
+    }
+    public function getDate() {
+        return $this->datum;
+    }
+    public function getTime() {
+        return $this->zeit;
+    }
+    public function getSVNR1() {
+        return $this->pat1;
+    }
+    public function getSVNR2() {
+        return $this->pat2;
+    }
+    public function __construct($id, $datum, $zeit, $pat1, $pat2)
+    {
+        $this->id = $id;
+        $this->datum = $datum;
+        $this->zeit = $zeit;
+        $this->pat1 = $pat1;
+        $this->pat2 = $pat2;
+    }
+}
+#spende-klasse: bei jeder Spende wird die kompatibilität der patienten (per blutgruppe) ermittelt und zurückgegeben
+class Spende{
+    protected $compatibility = 0;
+    public function getCompatibility() {
+        return $this->compatibility;
+    }
+    public function __construct($donator, $receiver) {
+        if($donator->getBloodtype() == "0-"){
+            $this->compatibility = 1;
+        }
+        if($donator->getBloodtype() == "0+"){
+            if($receiver->getBloodtype() == "0+"|| $receiver->getBloodtype() == "b+"|| $receiver->getBloodtype() == "a+" || $receiver->getBloodtype() == "ab+"){
+                $this->compatibility = 1;
+            }
+            else{
+                $this->compatibility = 0;
+            }
+        }
+        if($donator->getBloodtype() == "b-"){
+            if($receiver->getBloodtype() == "b-"|| $receiver->getBloodtype() == "b+"|| $receiver->getBloodtype() == "ab-" || $receiver->getBloodtype() == "ab+"){
+                $this->compatibility = 1;
+            }
+            else{
+                $this->compatibility = 0;
+            }
+        }
+        if($donator->getBloodtype() == "b+"){
+            if($receiver->getBloodtype() == "b+"|| $receiver->getBloodtype() == "ab+"){
+                $this->compatibility = 1;
+            }
+            else{
+                $this->compatibility = 0;
+            }
+        }
+
+
+
+    }
 }
 >
