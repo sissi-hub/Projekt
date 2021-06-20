@@ -1,1 +1,9 @@
-
+{
+    "authors": [
+        {
+            "name": "Pia Tauer",
+            "email": "Tau19072@spengergasse.at",
+            "role": "Developer"
+        }
+    ]
+}
